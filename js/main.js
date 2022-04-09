@@ -24,10 +24,11 @@ downloadButton.addEventListener('click', download);
 // localStorage
 if ( localStorage.title ) {
 	title.innerText = localStorage.title
-}
-if ( localStorage.text != '' || localStorage.text != 'undefined' ) {
+} else { console.log('title', localStorage) }
+
+if ( localStorage.text || localStorage.text != '' || localStorage.text != 'undefined' ) {
 	textarea.value = localStorage.text
-}
+} else { console.log('text', localStorage) }
 
 // Aurtoresize
 textarea.style.cssText = `height: ${textarea.scrollHeight}px; overflow-y: hidden`;
@@ -66,4 +67,4 @@ title.addEventListener('click', editTitle)
 setInterval(() => {
 	localStorage.text = textarea.value;
 	console.log('save')
-}, 60000)
+}, 10000)
