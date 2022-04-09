@@ -66,5 +66,4 @@ title.addEventListener('click', editTitle)
 // Autosave every 60 seconds
 setInterval(() => {
 	localStorage.text = textarea.value;
-	console.log('save')
 }, 60000)
