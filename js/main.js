@@ -27,7 +27,7 @@ downloadButton.addEventListener('click', download);
 if ( localStorage.title && localStorage.title != undefined ) {
 	title.innerText = localStorage.title
 }
-if ( localStorage.text && localStorage.text != undefined ) {
+if ( localStorage.text && localStorage.text != 'undefined' ) {
 	textarea.value = localStorage.text
 }
 
