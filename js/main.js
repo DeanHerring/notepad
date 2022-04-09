@@ -1,3 +1,5 @@
+localStorage.clear();
+
 const textarea = document.querySelector('.autoresize')
 const key = document.querySelector('#key')
 
@@ -22,8 +24,12 @@ const download = () => {
 downloadButton.addEventListener('click', download);
 
 // localStorage
-( localStorage.title != undefined ) ? title.innerText = localStorage.title : title.innerText = "Your Title";
-( localStorage.text != undefined ) ? textarea.value = localStorage.text : textarea.value = "";
+if ( localStorage.title && localStorage.title != undefined ) {
+	title.innerText = localStorage.title
+}
+if ( localStorage.text && localStorage.text != undefined ) {
+	textarea.value = localStorage.text
+}
 
 // Aurtoresize
 textarea.style.cssText = `height: ${textarea.scrollHeight}px; overflow-y: hidden`;
