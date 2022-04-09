@@ -1,5 +1,3 @@
-localStorage.clear();
-
 const textarea = document.querySelector('.autoresize')
 const key = document.querySelector('#key')
 
@@ -24,10 +22,10 @@ const download = () => {
 downloadButton.addEventListener('click', download);
 
 // localStorage
-if ( localStorage.title && localStorage.title != undefined ) {
+if ( localStorage.title ) {
 	title.innerText = localStorage.title
 }
-if ( localStorage.text && localStorage.text != 'undefined' ) {
+if ( localStorage.text != '' || localStorage.text != 'undefined' ) {
 	textarea.value = localStorage.text
 }
 
@@ -67,4 +65,5 @@ title.addEventListener('click', editTitle)
 // Autosave every 60 seconds
 setInterval(() => {
 	localStorage.text = textarea.value;
-}, 60000)
+	console.log('save')
+}, 10000)
