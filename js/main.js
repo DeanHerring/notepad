@@ -19,15 +19,11 @@ const download = () => {
 	el.download = `${title.innerText.toLowerCase()}.txt`;
 	el.click()
 }
-downloadButton.addEventListener('click', download)
+downloadButton.addEventListener('click', download);
 
 // localStorage
-if ( localStorage.title != "" ) {
-	title.innerText = localStorage.title;
-}
-if ( localStorage.text != "" ) {
-	textarea.value = localStorage.text;
-}
+( localStorage.title != undefined ) ? title.innerText = localStorage.title : title.innerText = "Your Title";
+( localStorage.text != undefined ) ? textarea.value = localStorage.text : textarea.value = "";
 
 // Aurtoresize
 textarea.style.cssText = `height: ${textarea.scrollHeight}px; overflow-y: hidden`;
