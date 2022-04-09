@@ -66,4 +66,4 @@ title.addEventListener('click', editTitle)
 setInterval(() => {
 	localStorage.text = textarea.value;
 	console.log('save')
-}, 10000)
+}, 60000)
