@@ -22,8 +22,10 @@ if ( localStorage.title ) {
 	vars.title.innerText = localStorage.title
 }
 
-if ( localStorage.text || localStorage.text != '' || localStorage.text ) {
+if ( localStorage.text && localStorage.text != '' && localStorage.text != 'undefined' ) {
 	vars.textarea.value = localStorage.text
+} else {
+	vars.textarea.value = ''
 }
 
 if ( !localStorage.getItem('background') ) {
