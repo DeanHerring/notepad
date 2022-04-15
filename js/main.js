@@ -28,8 +28,9 @@ if ( localStorage.text || localStorage.text != '' || localStorage.text ) {
 
 if ( !localStorage.getItem('background') ) {
 	vars.backgroundImage.style.backgroundImage = 'url(' + vars.defaultImage  + ')'
+} else {
+	vars.backgroundImage.style.backgroundImage = 'url(' + localStorage.getItem('background')  + ')'
 }
-vars.backgroundImage.style.backgroundImage = 'url(' + localStorage.getItem('background')  + ')'
 
 // Aurtoresize
 vars.textarea.style.cssText = `height: ${vars.textarea.scrollHeight}px; overflow-y: hidden`;
