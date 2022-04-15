@@ -12,15 +12,36 @@
 <body>
 	<div id="wrapper">
 
-		<!-- <a href="#" class="setting-open"><i class="fa-solid fa-gears"></i></a> -->
-		<a href="#" class="download"><i class="fa-solid fa-cloud-arrow-down"></i></a>
+		<div class="files">
+			<a href="#" class="export"><i class="fa-solid fa-cloud-arrow-down"></i></a>
+			<a href="#" class="import"><i class="fa-solid fa-cloud-arrow-up"></i></a>
+		
+			<form method="POST" enctype="multipart/form-data" class="files__form">
+				<input type="file" class="files__upload">
+				<input type="submit" value="Send" class="files__send">
+			</form>
+		</div>
+		<a href="#" class="setting-open"><i class="fa-solid fa-gears"></i></a>
+		<p class="characters">0</p>
 
 		<div class="setting">
-			<a href="#" class="setting-close"><i class="fa-solid fa-xmark"></i></a>
+			<header class="setting__header">
+				<h2>Настройки</h2>
+			</header>
+			<div class="setting__content">
+				<ul class="setting__list">
+					<li class="setting__item">
+						<div class="setting__item-text">
+							<i class="fa-solid fa-image"></i>
+							<p>Фон</p>
+						</div>
 
-			<div class="setting-body">
-				<h1>Hello, world</h1>
+						<input type="text" placeholder="https://" class="url-background">
+					</li>
+				</ul>
 			</div>
+
+			<button class="setting__save">Сохранить</button>
 		</div>
 
 		<div class="main-img"></div>
@@ -37,6 +58,6 @@
 	</div>
 
 	<!-- scripts -->
-	<script src="js/main.js"></script>
+	<script src="js/main.js" type="module"></script>
 </body>
 </html>

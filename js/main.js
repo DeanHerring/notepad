@@ -1,69 +1,124 @@
-const textarea = document.querySelector('.autoresize')
-const key = document.querySelector('#key')
+// localStorage.clear()
+import * as vars from './vars.js'
 
-let title = document.querySelector('.title')
-let titleEdit = document.querySelector('.title-edit')
-
-let settingOpenButton = document.querySelector('.setting-open')
-let settingCloseButton = document.querySelector('.setting-close')
-let settingBody = document.querySelector('.setting');
-
-let downloadButton = document.querySelector('.download');
+// textarea
+vars.textarea.addEventListener('input', e => {
+	vars.characters.innerText = vars.textarea.value.length
+})
 
 // Download
 const download = () => {
 	let el = document.createElement('a')
 
-	el.href = 'data:attachment/text,' + encodeURI(textarea.value);
+	el.href = 'data:attachment/text,' + encodeURI(vars.textarea.value);
 	el.target = '_blank';
-	el.download = `${title.innerText.toLowerCase()}.txt`;
+	el.download = `${vars.title.innerText.toLowerCase()}.txt`;
 	el.click()
 }
-downloadButton.addEventListener('click', download);
+vars.exportButton.addEventListener('click', download);
 
 // localStorage
 if ( localStorage.title ) {
-	title.innerText = localStorage.title
+	vars.title.innerText = localStorage.title
 }
 
-if ( localStorage.text || localStorage.text != '' || localStorage.text != 'undefined' ) {
-	textarea.value = localStorage.text
+if ( localStorage.text || localStorage.text != '' || localStorage.text ) {
+	vars.textarea.value = localStorage.text
 }
+
+if ( !localStorage.getItem('background') ) {
+	vars.backgroundImage.style.backgroundImage = 'url(' + vars.defaultImage  + ')'
+}
+vars.backgroundImage.style.backgroundImage = 'url(' + localStorage.getItem('background')  + ')'
 
 // Aurtoresize
-textarea.style.cssText = `height: ${textarea.scrollHeight}px; overflow-y: hidden`;
+vars.textarea.style.cssText = `height: ${vars.textarea.scrollHeight}px; overflow-y: hidden`;
 
-textarea.addEventListener('input', () => {
-	textarea.style.height = "auto";
-	textarea.style.height = `${textarea.scrollHeight}px`;
+vars.textarea.addEventListener('input', () => {
+	vars.textarea.style.height = "auto";
+	vars.textarea.style.height = `${vars.textarea.scrollHeight}px`;
 })
 
 // Edit
 const editTitle = () => {
-	titleEdit.value = title.innerText
-	titleEdit.classList.add('active')
-	title.classList.add('hidden')
+	vars.titleEdit.value = vars.title.innerText
+	vars.titleEdit.classList.add('active')
+	vars.title.classList.add('hidden')
 
-	titleEdit.addEventListener('change', () => {
-		title.innerText = titleEdit.value
-		titleEdit.classList.remove('active')
-		title.classList.remove('hidden')
+	vars.titleEdit.addEventListener('change', () => {
+		vars.title.innerText = vars.titleEdit.value
+		vars.titleEdit.classList.remove('active')
+		vars.title.classList.remove('hidden')
 
-		localStorage.title = title.innerText
+		localStorage.title = vars.title.innerText
 	})
 }
-title.addEventListener('click', editTitle)
+vars.title.addEventListener('click', editTitle)
 
 // Setting
-// const setting = (event) => {
-// 	( event.path[1].classList.contains('setting-open') ) ? 
-// 	settingBody.classList.add('active') :
-// 	settingBody.classList.remove('active')
-// }
-// settingOpenButton.addEventListener('click', setting)
-// settingCloseButton.addEventListener('click', setting)
+const toggleMenu = () => {
+	vars.settingBody.classList.toggle('active');
+}
+
+vars.settingOpenButton.addEventListener('click', e => {
+	e.stopPropagation()
+	toggleMenu()
+})
+
+// Клик вне меню
+document.addEventListener('click', e => {
+	const target = e.target;
+	const its_menu = target == vars.settingBody || vars.settingBody.contains(target);
+	const its_btnMenu = target == vars.settingOpenButton;
+	const menu_is_active = vars.settingBody.classList.contains('active');
+
+	if (!its_menu && !its_btnMenu && menu_is_active) {
+		toggleMenu();
+	}
+})
+
+const settingUpdate = (event) => {
+	toggleMenu()
+	
+	localStorage.setItem('background', vars.inputBackgroundUrl.value)
+	vars.backgroundImage.style.backgroundImage = 'url('+ localStorage.getItem('background') +')'
+}
+
+vars.settingSave.addEventListener('click', settingUpdate)
 
 // Autosave every 60 seconds
 setInterval(() => {
-	localStorage.text = textarea.value;
-}, 60000)
+	localStorage.text = vars.textarea.value;
+}, 10000)
+
+// Import files
+const uploadText = async () => {
+	return new Promise(res => {
+		vars.filesUpload.addEventListener('change', () => {
+			const files = vars.filesUpload.files
+
+			if (files.length) {
+				const reader = new FileReader()
+				reader.addEventListener('load', () => {
+					res(reader.result)
+				})
+				reader.readAsText(files[0])
+			}
+		})
+	})
+}
+
+vars.importButton.addEventListener('click', e => {
+	vars.filesUpload.click();
+
+	uploadText().then(text => {
+		console.log(text)
+
+		vars.textarea.value = ''
+		vars.textarea.value = text
+
+		let event = new Event("input")
+
+		vars.textarea.dispatchEvent(event)
+	})
+})
