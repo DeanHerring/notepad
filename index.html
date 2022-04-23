@@ -3,8 +3,9 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Dean Herring | Notepad</title>
+	<title>Dean Herring | Notepad [Lola]</title>
 	<!-- libs -->
+	<link rel="stylesheet" href="css/libs/hitman.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<!-- styles -->
 	<link rel="stylesheet" href="css/main.min.css">
@@ -12,16 +13,19 @@
 <body>
 	<div id="wrapper">
 
-		<div class="files">
+		<div class="files-a">
 			<a href="#" class="export"><i class="fa-solid fa-cloud-arrow-down"></i></a>
 			<a href="#" class="import"><i class="fa-solid fa-cloud-arrow-up"></i></a>
 			
-			<form method="POST" enctype="multipart/form-data" class="files__form">
+			<form method="POST" enctype="multipart/form-data" class="files-a__form">
 				<input type="file" class="files__upload">
 				<input type="submit" value="Send" class="files__send">
 			</form>
 		</div>
-		<a href="#" class="setting-open"><i class="fa-solid fa-gears"></i></a>
+		<div class="links">
+			<!-- <span class="setting-open"><i class="fa-solid fa-gears"></i></span> -->
+			<!-- <span class="folders-open hitman-button"><i class="fa-solid fa-folder"></i></span> -->
+		</div>
 		<p class="characters">0</p>
 
 		<div class="setting">
@@ -38,19 +42,90 @@
 
 						<input type="text" placeholder="https://" class="url-background">
 					</li>
-					<li class="setting__item">
-						<div class="setting__item-text">
-							<i class="fa-solid fa-image"></i>
-							<p>Фон</p>
-						</div>
-
-						<input type="text" placeholder="https://" class="url-background">
-					</li>
 				</ul>
 			</div>
 
 			<button class="setting__save">Сохранить</button>
 		</div>
+
+		<!-- hitman modal [Files] -->
+<!-- 		<div class="hitman-modal files">
+			<div class="hitman-overlay"></div>
+
+			<div class="hitman-wrapper files-wrapper">
+				<header class="files-header">
+					<h1>Менеджер файлов</h1>
+					<span class="files-add hitman-button"><i class="fa-solid fa-file-circle-plus"></i></span>
+				</header>
+
+				<div class="files-content">
+					<ul class="files-list">
+						<li class="files-item" data-tabs-id="1">
+							<p>Пустой файл 1</p>
+							<span class="files-delete"><i class="fa-solid fa-trash"></i></span>
+						</li>
+						<li class="files-item" data-tabs-id="2">
+							<p>Пустой файл 2</p>
+							<span class="files-delete"><i class="fa-solid fa-trash"></i></span>
+						</li>
+						<li class="files-item" data-tabs-id="3">
+							<p>Пустой файл 3</p>
+							<span class="files-delete"><i class="fa-solid fa-trash"></i></span>
+						</li>
+						<li class="files-item" data-tabs-id="4">
+							<p>Пустой файл 4</p>
+							<span class="files-delete"><i class="fa-solid fa-trash"></i></span>
+						</li>
+						<li class="files-item" data-tabs-id="5">
+							<p>Пустой файл 5</p>
+							<span class="files-delete"><i class="fa-solid fa-trash"></i></span>
+						</li>
+						<li class="files-item" data-tabs-id="6">
+							<p>Пустой файл 6</p>
+							<span class="files-delete"><i class="fa-solid fa-trash"></i></span>
+						</li>
+						<li class="files-item" data-tabs-id="7">
+							<p>Пустой файл 7</p>
+							<span class="files-delete"><i class="fa-solid fa-trash"></i></span>
+						</li>
+						<li class="files-item" data-tabs-id="8">
+							<p>Пустой файл 8</p>
+							<span class="files-delete"><i class="fa-solid fa-trash"></i></span>
+						</li>
+						<li class="files-item" data-tabs-id="9">
+							<p>Пустой файл 9</p>
+							<span class="files-delete"><i class="fa-solid fa-trash"></i></span>
+						</li>
+						<li class="files-item" data-tabs-id="10">
+							<p>Пустой файл 10</p>
+							<span class="files-delete"><i class="fa-solid fa-trash"></i></span>
+						</li>
+					</ul>
+					<div class="files-empty">
+						<p>Файлы не найдены</p>
+					</div>
+				</div>
+			</div>
+		</div> -->
+
+		<!-- hitman modal -->
+<!-- 		<div class="hitman-modal form">
+			<div class="hitman-overlay"></div>
+
+			<div class="hitman-wrapper form-wrapper">
+				<header class="form-header">
+					<h1>Заполните форму</h1>
+				</header>
+
+				<div class="form-content">
+					<form>
+						<label>Название файла (необязательно)</label>
+						<input type="text" placeholder="Напишите что-нибудь..." class="form-title">
+					</form>
+					<button class="form-create">Создать</button>
+				</div>
+			</div>
+		</div> -->
 
 		<div class="main-img"></div>
 		<div class="main-bg"></div>
@@ -59,12 +134,16 @@
 			<div class="main__content">
 				<input type="text" class="title-edit" placeholder="Your title...">
 				<h1 class="title">TITLE</h1>
-				<textarea class="text-field autoresize" placeholder="Type something here..." spellcheck="false"></textarea>
+				<!-- <textarea class="text-field autoresize" placeholder="Type something here..." spellcheck="false"></textarea> -->
+
+				<div class="text-field" contenteditable="true" data-text="Enter text here..." spellcheck="false"></div>
 			</div>
 		</main>
 
 	</div>
 
+	<!-- libs -->
+	<script src="js/libs/hitman.js"></script>
 	<!-- scripts -->
 	<script src="js/main.js" type="module"></script>
 </body>
