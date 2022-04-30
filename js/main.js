@@ -7,7 +7,6 @@ vars.text_field.addEventListener('input', e => {
 	vars.characters.innerText = vars.text_field.innerText.length
 
 	// ../music/najatie-knopki-zapuska-lunohoda.mp3
-<<<<<<< HEAD
 	let audio = new Audio(`${production_url}/music/kompyuternaya-klaviatura-nepreryivno-najimaet-neskolko-klavish-43255.mp3`)
 	audio.volume = 0.5
 	audio.play()
@@ -15,7 +14,6 @@ vars.text_field.addEventListener('input', e => {
 		audio.pause()
 		audio.currentTime = 0
 	}, 100)
-=======
 	// let audio = new Audio('../music/kompyuternaya-klaviatura-nepreryivno-najimaet-neskolko-klavish-43255.mp3')
 	// audio.volume = 0.5
 	// audio.play()
@@ -23,7 +21,6 @@ vars.text_field.addEventListener('input', e => {
 	// 	audio.pause()
 	// 	audio.currentTime = 0
 	// }, 100)
->>>>>>> lola
 })
 
 // download
