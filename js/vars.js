@@ -28,3 +28,6 @@ export let files_title = document.querySelector('.form-title')
 export let files_create = document.querySelector('.form-create')
 export let files_delete = document.querySelector('.form-create')
 export let files_map = new Map()
+
+export let musics = document.querySelectorAll('.music-item')
+export let music_off = document.querySelector('.music-off')
