@@ -6,13 +6,13 @@ vars.text_field.addEventListener('input', e => {
 	vars.characters.innerText = vars.text_field.innerText.length
 
 	// ../music/najatie-knopki-zapuska-lunohoda.mp3
-	let audio = new Audio('../music/kompyuternaya-klaviatura-nepreryivno-najimaet-neskolko-klavish-43255.mp3')
-	audio.volume = 0.5
-	audio.play()
-	setTimeout(() => {
-		audio.pause()
-		audio.currentTime = 0
-	}, 100)
+	// let audio = new Audio('../music/kompyuternaya-klaviatura-nepreryivno-najimaet-neskolko-klavish-43255.mp3')
+	// audio.volume = 0.5
+	// audio.play()
+	// setTimeout(() => {
+	// 	audio.pause()
+	// 	audio.currentTime = 0
+	// }, 100)
 })
 
 // download
@@ -155,7 +155,7 @@ vars.importButton.addEventListener('click', e => {
 // 		let content = vars.files_map.get(id)
 
 // 		map.set(id, content)
-		
+
 // 		localStorage.tabs = JSON.stringify(Object.fromEntries(map))
 // 	} else {
 // 		localStorage.tabs = JSON.stringify(Object.fromEntries(vars.files_map));
@@ -176,10 +176,46 @@ vars.importButton.addEventListener('click', e => {
 // 	checkFiles()
 
 // 	let map = new Map(Object.entries(JSON.parse(localStorage.tabs)))
-	
+
 // 	map.delete(parent.getAttribute('data-id'))
 
 // 	localStorage.tabs = JSON.stringify(Object.fromEntries(map))
 // }
 
 // vars.files_create.addEventListener('click', addFile)
+
+// music
+const musicPlay = (e) => {
+	e.preventDefault()
+	let target = e.target
+	vars.musics.forEach(i => {
+		;( i.classList.contains('selected') ) ? i.classList.remove('selected') : false;
+	})
+	target.classList.toggle('selected')
+	let track = target.children[0]
+	vars.musics.forEach(i => {
+		i.children[0].pause()
+		i.children[0].currentTime = 0
+	})
+
+	if ( !vars.music_off.children[0].classList.contains('off') ) {
+		track.play()
+	}
+
+	track.addEventListener('ended', () => {
+		track.play()
+	})
+}
+
+const musicOff = (e) => {
+	e.preventDefault()
+	let target = e.target
+	target.classList.toggle('off')
+	vars.musics.forEach(i => {
+		i.children[0].pause()
+		i.children[0].currentTime = 0
+	})
+}
+
+vars.musics.forEach(music => music.addEventListener('click', musicPlay))
+vars.music_off.addEventListener('click', musicOff)
