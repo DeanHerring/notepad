@@ -5,22 +5,9 @@ let production_url = 'https://deanherring.github.io/notepad'
 // text_field
 vars.text_field.addEventListener('input', e => {
 	vars.characters.innerText = vars.text_field.innerText.length
-
-	// ../music/najatie-knopki-zapuska-lunohoda.mp3
-	let audio = new Audio(`${production_url}/music/kompyuternaya-klaviatura-nepreryivno-najimaet-neskolko-klavish-43255.mp3`)
-	audio.volume = 0.5
+	let audio = new Audio('../music/click.mp3')
+	audio.currentTime = 0.6
 	audio.play()
-	setTimeout(() => {
-		audio.pause()
-		audio.currentTime = 0
-	}, 100)
-	// let audio = new Audio('../music/kompyuternaya-klaviatura-nepreryivno-najimaet-neskolko-klavish-43255.mp3')
-	// audio.volume = 0.5
-	// audio.play()
-	// setTimeout(() => {
-	// 	audio.pause()
-	// 	audio.currentTime = 0
-	// }, 100)
 })
 
 // download
