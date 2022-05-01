@@ -5,7 +5,7 @@ let production_url = 'https://deanherring.github.io/notepad'
 // text_field
 vars.text_field.addEventListener('input', e => {
 	vars.characters.innerText = vars.text_field.innerText.length
-	let audio = new Audio('../music/click.mp3')
+	let audio = new Audio(`${production_url}/music/click.mp3`)
 	audio.currentTime = 0.6
 	audio.play()
 })
